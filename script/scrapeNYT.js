@@ -28,7 +28,7 @@ var scrape = function(){
 
 
 module.exports = scrape;
-// laod it into cheerio
+// load it into cheerio
 // take all data push it into and array
 //return that array from this file so we can store it into our db
 
