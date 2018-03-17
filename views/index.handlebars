@@ -1,40 +1,60 @@
-<h1>Eat-Da-Burger!</h1>
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col s6">
-            	{{#each burgers}}
-            	{{#unless this.devoured}}
-            	<div>
-            		<form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
-            			<button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
-            		</form>
-            	</div>
-            	{{/unless}}
-            	{{/each}}
-            </div>
-            <div class="col s6">
-            	{{#each burgers}}
-            	{{#if this.devoured}}
-            	<div class='burgerEaten'>
-            		<div>
-            			{{this.burger_name}}
-            		</div>
-            	</div>
-            	{{/if}}
-    			{{/each}}
-    		</div>
-    	</div>
-    </div>
-</main>
+ <nav>
+    <div class="nav-wrapper #1565c0 blue darken-3">
+      <a href="#" class="brand-logo #4527a0 deep-purple darken-3
+">Web Scraped News!</a>
+      <ul class = "right">
 
-<h2>Add A Burger Option</h2>
-<div class="row">
-	<div class="col s6">
-		<form>
-			<input type="black-text" id="name" name="
-			burger_name" placeholder="Cheeseburger">
-			<button type="submit" class="addBurgerButton" id="addBurger">Add The Burger</button>
-		</form>
-	</div>
+        <li>
+            <a href = "/scrape" class="waves-effect waves-light btn"><i class="material-icons right">system_update_alt</i>Scrape!</a>
+        </li>
+
+              
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+
+  <!-- Articles -->
+<div class="container">
+
+    <table>
+        <tbody>
+
+            {{#each articles}}
+            <div class=row>
+
+                <div class="col s8">
+                    <a href="{{this.link}}" class="collection-item blue-text" target="_blank">{{this.title}}</a>
+                </div>
+                <div class="col s4">
+                    <button class="noteButton waves-effect waves-light btn-flat blue" id="{{this._id}}">Add Note</button>
+                </div>
+
+            </div>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+</div>
+        
+<!-- Note modal -->
+<div id="noteModal" class="modal modal-fixed-footer">
+
+    <div class="modal-content">
+        <p>Notes</p>
+        <ul class="messages collection"></ul>
+    </div>
+    
+    <div class="modal-footer">
+        <form name="noteForm" id="noteForm">
+                    <input required placeholder="Enter a note here" type="text" name="noteText" id="noteText">
+            <button class="btn green left" type="submit" id="noteButton">
+                Post Note!
+            </button>
+            <a href="/" class="modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+        </form>
+    </div>
+
 </div>
