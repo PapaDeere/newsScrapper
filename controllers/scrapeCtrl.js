@@ -1,6 +1,7 @@
 
 const cheerio = require('cheerio')
 var request = require('request');
+var db = require('../models')
 
 //hit nyt scrape data
 function scrape (cb){
@@ -21,7 +22,9 @@ function scrape (cb){
         url: url
       };
 
-      articles.push(data);
+      if(data.summary && data.url && data.headline){
+        articles.push(data);
+      }
     });
    cb(articles)
   });
@@ -32,7 +35,9 @@ function scrape (cb){
 module.exports = {
   getNYT: function(req, res){
    scrape(function(articles){
-     res.json({articles: articles})
+    db.Article.create(articles).then(function(dbArticles){
+       res.json(dbArticles)
+    })
     }
   );
   }
