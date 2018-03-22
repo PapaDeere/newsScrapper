@@ -5,7 +5,7 @@
       <ul class = "right">
 
         <li>
-            <a href = "/scrape" class="waves-effect waves-light btn"><i class="material-icons right">system_update_alt</i>Scrape!</a>
+            <a id="scrape" class="waves-effect waves-light btn"><i class="material-icons right">system_update_alt</i>Scrape!</a>
         </li>
 
               
@@ -25,10 +25,30 @@
             <div class=row>
 
                 <div class="col s8">
-                    <a href="{{this.link}}" class="collection-item blue-text" target="_blank">{{this.title}}</a>
+                    <a href="{{this.url}}" class="collection-item blue-text" target="_blank">{{this.headline}}</a>
                 </div>
                 <div class="col s4">
-                    <button class="noteButton waves-effect waves-light btn-flat blue" id="{{this._id}}">Add Note</button>
+                    <button class="noteButton waves-effect waves-light btn-flat blue modal-trigger" data-target="noteModal{{this._id}}">Add Note</button>
+                </div>
+                <!-- Note modal -->
+                <div id="noteModal{{this._id}}" class="modal modal-fixed-footer">
+                
+                    <div class="modal-content">
+                        <p>Notes</p>
+                        <ul class="messages collection" id="allNotes{{this._id}}"></ul>
+                    </div>
+                
+                    <div class="modal-footer">
+                        <form name="noteForm" id="noteForm">
+                            <input required placeholder="Enter a note here" type="text" name="noteText" id="noteText{{this._id}}">
+                            <button class="btn green left" type="submit" data-id="{{this._id}}"
+                            id="noteButton">
+                                Post Note!
+                            </button>
+                            <a href="/" class="modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+                        </form>
+                    </div>
+                
                 </div>
 
             </div>
@@ -36,25 +56,5 @@
 
         </tbody>
     </table>
-
-</div>
-        
-<!-- Note modal -->
-<div id="noteModal" class="modal modal-fixed-footer">
-
-    <div class="modal-content">
-        <p>Notes</p>
-        <ul class="messages collection"></ul>
-    </div>
-    
-    <div class="modal-footer">
-        <form name="noteForm" id="noteForm">
-                    <input required placeholder="Enter a note here" type="text" name="noteText" id="noteText">
-            <button class="btn green left" type="submit" id="noteButton">
-                Post Note!
-            </button>
-            <a href="/" class="modal-action modal-close waves-effect waves-light btn-flat">Close</a>
-        </form>
-    </div>
 
 </div>
